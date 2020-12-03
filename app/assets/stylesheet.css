@@ -2,6 +2,25 @@
     line-height: 2.5;
 }
 
+.info-placement{
+
+    position: absolute;
+    cursor: pointer;
+    height: 2.2rem;
+    width: 2.2rem;
+    margin-left: 92%;
+    margin-top: 10px;
+}
+
+.info-placement2{
+
+    position: absolute;
+    cursor: pointer;
+    height: 2.2rem;
+    width: 2.2rem;
+    margin-top: 10px;
+    margin-right: 90%;
+}
 
 
 .js-plotly-plot .plotly .modebar{
