@@ -323,6 +323,12 @@ def register_dashapps(app):
     dashapp1.layout = html.Div([
         html.Div([
             html.H2('Fundamental Analysis'),
+            html.Img(
+                id='instructions-button7',
+                src=dashapp1.get_asset_url('question-circle-solid.svg'),
+                # html.Img(src= dashapp1.get_asset_url('question-circle-solid.svg'))
+                n_clicks=0,
+                className='info-placement3'),
             html.A(html.Button(id="logout-button", n_clicks=0, children="Log Out", className="logout2"),
                    href='https://samis-project.herokuapp.com/logout/'),
             html.Img(src= dashapp1.get_asset_url('stock-icon.png')),
@@ -785,6 +791,89 @@ def register_dashapps(app):
                 className='modal-content',
             ),
         ], id='modal6', className='modal', style={"display": "none"}),
+        html.Div([  # modal div
+            html.Div([  # content div
+                html.Img(
+                    id='modal-close-button7',
+                    src= dashapp1.get_asset_url('times-circle-solid.svg'),
+                    # html.Img(src= dashapp1.get_asset_url('times-circle-solid.svg'))
+                    n_clicks=0,
+                    className='info-icon2',
+                    style={'margin': 0},
+                ),
+                html.Div(
+                    children=[
+                        dcc.Markdown(dedent('''
+                        
+                        I have built this application to incorporate the investing techniques listed below such as 
+                        implementing a way for users to access the financial reports of lots of different stocks (through 
+                        selecting the stocks ticker in the search bar) and intrinsic value estimates that could help users
+                        assess the risk of investments and whether they are undervalued and worth investing in.
+                        
+                        For those of us who are not familiar with investing techniques I will 
+                        briefly describe what exactly _**fundamental analysis**_ and _**value investing**_ is since 
+                        it will be important in order to understand what my application does and how it can be useful:
+                        
+                        In laymen terms, fundamental analysis is an investment technique used by value investors 
+                        through looking at the financial reports of a company otherwise referred to as the 
+                        _**financial statements**_. For all publicly traded companies on equity markets, 
+                        they are required to be published and available for investors to scrutinize consitsing of the 
+                        _**income statement, balance sheet and cash flow statement**_.
+                        
+                         These reports can be used in order to assess the underlying economics and health of a 
+                        business through a number of ratios, values and indicators. These can give tell-tale signs of 
+                        a business doing well; whether it is likely to have _**durable competitive advantage**_ and 
+                        be potential investment material or if it is a _**commodity type business**_ of which we 
+                        should avoid investing in. 
+                        
+                        Another extremely important concept in value investing is something called _**intrinsic 
+                        value**_. Intrinsic value refers to the underlying monetary worth of a particular stock which 
+                        can be calculated through using an array of valuation models. The whole essence of value 
+                        investing centres around this and the massive misconception about what _**risk**_ actually is. 
+                        
+                        Investors define risk as how much you actually pay for an asset and how much it is really 
+                        worth. This may sound intuitive but, like most traders, is massively overlooked who instead 
+                        try to define risk as the volatilty and beta change of a stock which is simply nonsense. 
+                        
+                        In reality the _**'simplest solution is almost always the best one'**_ with the lower the 
+                        price you pay for a stock the less risk you assume and the more you stand to gain if prices 
+                        go up and the less you can loose if prices go down. On the otherside of the spectrum by 
+                        overpaying for an asset we are increasing risk as our return on our investment is likely to 
+                        be far less. 
+                         
+                        Unlike traders, we are not concerned with the direction the price of stocks are moving and 
+                        rather we care about _**the actual price we pay for a business**_. Whilst traders try to 'cut 
+                        their losses and reduce risk' by selling shares as they get traded at a lower price, 
+                        we are happy to swoop in and increase our position, holding the shares long term, 
+                        knowing that the price it is traded now is far less than it is actually worth. 
+                       
+                        In summary value investing is about buying stocks which are traded below their actual 
+                        monetary worth (below intrinsic value) and holding onto them long term following the theory 
+                        that assets will always trend back towards their intrinsic value. Put simply it is _**‘buying a 
+                        dollar for 50 cents’**_ by taking advantage of the total irrationality of equity markets where 
+                        people buy and sell not because they fundamentally understand the value of their investment 
+                        but based purely on _**speculation and emotion**_. 
+
+                        Expanding upon this point further _**Benjamin Graham**_, widely regarded as the father of value 
+                        investing and _**Warren Buffet's**_ mentor, famously said _**'in the short run the market is a 
+                        voting machine but in the long run it is a weighing machine.'**_ This is a very profound 
+                        insight into how equity markets really work, usually ignored by most people and is in essence 
+                        the whole theory behind value investing. It is the idea that the people trading stocks every 
+                        day actually represent a tiny minority of the shares outstanding of a business. However it is 
+                        these very people, well advised or not, who are deciding the price of a business eventhough 
+                        they only account for sometimes 0.001% of shareholders. Obviosuly we can deduce from this 
+                        that the actual value of an asset is very different to the price traded but over the long 
+                        term the price of the shares traded on the market will slowly grow to accept the underlying 
+                        value of a stock as it becomes blindingly obvious around how much it should really be worth. 
+                        
+                    '''))]
+                ),
+
+            ],
+                style={'textAlign': 'center', },
+                className='modal-content',
+            ),
+        ], id='modal7', className='modal', style={"display": "none"}),   
         ])  # hidden divs
     ])
 
@@ -3499,6 +3588,21 @@ def register_dashapps(app):
 
     @dashapp1.callback(Output('instructions-button6', 'n_clicks'),
                        [Input('modal-close-button6', 'n_clicks')])
+    def close_modal(n):
+        if n is not None:
+            # return {"display": "none"}
+            return 0
+        
+    @dashapp1.callback(Output('modal7', 'style'),
+                   [Input('instructions-button7', 'n_clicks')])
+    def show_modal(n):
+        if n > 0:
+            return {"display": "block"}
+        return {"display": "none"}
+
+
+    @dashapp1.callback(Output('instructions-button7', 'n_clicks'),
+                       [Input('modal-close-button7', 'n_clicks')])
     def close_modal(n):
         if n is not None:
             # return {"display": "none"}
