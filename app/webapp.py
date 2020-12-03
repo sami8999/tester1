@@ -60,7 +60,7 @@ def logout():
 def register():
     if current_user.is_authenticated:
         #return redirect(url_for('main.index'))
-        return redirect ('https://samis-project.herokuapp.com/index/')
+        return redirect ('https://samis-project.herokuapp.com/dashboard/')
 
     form = RegistrationForm()
     if form.validate_on_submit():
