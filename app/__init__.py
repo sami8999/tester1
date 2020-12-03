@@ -633,6 +633,158 @@ def register_dashapps(app):
                     className='modal-content',
                 ),
             ], id='modal4', className='modal', style={"display": "none"}),
+            
+            html.Div([  # modal div
+                html.Div([  # content div
+                    html.Img(
+                        id='modal-close-button5',
+                        src=dashapp1.get_asset_url('times-circle-solid.svg'),
+                        # html.Img(src= dashapp1.get_asset_url('stock-icon.png'))
+                        n_clicks=0,
+                        className='info-icon2',
+                        style={'margin': 0},
+                    ),
+                html.Div(
+                    children=[
+                        dcc.Markdown(dedent('''
+
+                        _**Discounted Cash Flow**_ - Warren Buffet defines the value of a business as ‘the discounted 
+                        value of the cash that can be taken out of a business during its remaining life.’ We can 
+                        calculate this by summing and estimating all the discounted cash flows of a business to 
+                        perpetuity. This is my own variation of DCF analysis which I have derived from first 
+                        principles modelling cash flows as a geometric sequence with the growth rate divided by the 
+                        discount rate as the common difference in the sequence. 
+                        
+                        _**Please note:**_ The rest of these models are more unconventional. They are not well 
+                        defined valuation techniques and are models I have designed based on investment tips. They 
+                        may give a good idea of the general value of a stock especially for companies that do not 
+                        oblige to classical security analysis such as having high equity growth but negative 
+                        cashflows. These tend to be companies in their growth phase where they provide value to 
+                        shareholders in the form of equity rather than cash but have potential to provide large cash 
+                        flows in the future. Like all models, these techniques should not be taken at face value and 
+                        be scrutinised to the fullest extent. The values loaded in to start with with each stock 
+                        are arbitrary and need to be finely tuned. 
+                        
+                        _**Equity P/E**_ – We predict the future equity of a stock based on its growth rate, 
+                        multiply by its average equity return to get to a prediction of future earnings. We can then 
+                        divide this by the total shares outstanding to get earning per share (we should however 
+                        divide by the amount of shares we predict in the future so adjust the shares slider) and 
+                        multiply by the average price to earnings ratio (which has been modelled from the last 10 
+                        years) to predict the future share price of a stock. Knowing the future value we can now find 
+                        the present value through discounting back to today to arrive at a valuation. 
+                        
+                        _**Income P/E**_ – This is based on earnings per share growth which mitigates the issue of 
+                        predicting share growth or decline like in our previous model. We divide income by shares 
+                        outstanding and multiply by the earnings per share growth rate. We then multiply by the 
+                        average price to earnings ratio to get to a prediction for the future share price which we 
+                        can then discount back to todays to arrive at a valuation. 
+
+                        _**Liquidation**_ – This model is based on purely book value. For some businesses in the past 
+                        Warren Buffet has said ‘percentage change in the book value is likely to be reasonably close 
+                        to that year's change in intrinsic value.’ Althoguh Buffet has now denounced book value as a 
+                        financial metric entirely, this could still be somewhat useful for understanding the share 
+                        price of growth and speculative companies which grow their businesses and book values first 
+                        unlike the stable companies we'd generally rather invest in as value investors. 
+                        
+                        _**Margin of safety**_ - We can apply a margin of safety to account for any assumptions and 
+                        errors in our models by reducing our estimate for intrinsic value 
+                        
+                        _**Future Period**_ - The smaller the future period the more conservative our estimate for 
+                        intrinsic value will be. This is because by increasing the future period we increase the 
+                        number of years where we model cash flows using a high growth rate rather than its perpetual 
+                        growth rate. 
+
+                        _**Buffet Indicator**_ is the ratio of the total market capitilisation of US stocks to GDP 
+                        using the Wilshire 5000. Given that the stock market represents the primarily expectations of 
+                        future economic activity and the GDP is a measure of most recent economic activity, 
+                        the ratio of these two represents the expected future growth relative to current performance 
+                        similar in nature to how we think about the PE ratio of a stock. It stands to reason that 
+                        during highly overvalued markets this value will be large as valuations are more then their 
+                        actual economic output represnted by being over 100 on the graph. We can therefore use the 
+                        metric to assess whether markets are undervalued or overvalued. 
+                        
+                    '''))]
+                ),
+
+            ],
+                style={'textAlign': 'center', },
+                className='modal-content',
+            ),
+        ], id='modal5', className='modal', style={"display": "none"}),
+        html.Div([  # modal div
+            html.Div([  # content div
+                html.Img(
+                    id='modal-close-button6',
+                    src=dashapp1.get_asset_url('times-circle-solid.svg'),
+                    # html.Img(src= dashapp1.get_asset_url('times-circle-solid.svg'))
+                    n_clicks=0,
+                    className='info-icon2',
+                    style={'margin': 0},
+                ),
+                html.Div(
+                    children=[
+                        dcc.Markdown(dedent('''
+                        _**Pearson’s correlation**_ measures the strength of the linear relationship between two 
+                        variables with a value between +1 and -1. +1 meaning two variables are perfectly correlated, 
+                        -1 meaning they are inversely correlated and 0 meaning there is no relationship between the 
+                        variables. The linear correlation between the share price and these variables can be used to 
+                        assess which model we should use for intrinsic value. E.g. if share price correlates highly 
+                        to free cash flow but not much with equity perhaps it would be better to use DCF analysis 
+                        rather than an equity-based model or vice versa. 
+
+                        _**Linear Regression**_ is a machine learning technique to model an equation of a line 
+                        between two variables assuming they are linearly correlated of course (which we can measure 
+                        using a coefficient). This can be used in DCF analysis as the equation can be modelled by 
+                        summing cash flows rather than the sum of a geometric sequence with the common difference 
+                        dependant on the growth rate of cash flows. This new model could potentially be a better and 
+                        more conservative model for intrinsic value as calculating growth rate in our previous model 
+                        has a lot of limitations. We can also apply our correlation value that the stock has with 
+                        cash flows and the coefficient value (how well the line fits our data points) of our 
+                        regression model to reduce our DCF estimate like applying a marign of safety. 
+
+
+                        _**K-means clustering**_ is an unsupervised machine learning technique used to group similar 
+                        datapoints together into clusters by randomly assigning cluster centres and iteratively changing 
+                        the centres until an equilibrium is reached. 
+                        
+                        My hypothesis for clustering stocks is that they can be sorted into different categories such 
+                        as companies with durable competitive advantage, excellent business economics, 
+                        average economics and those that are commodity type businesses and have bad financial 
+                        indicators. The cluster the stock belongs too could also tell us whether or not it is for 
+                        example a company in its growth phase or what industry it belongs to. This could be useful in 
+                        evaluating the valuation model we should use for intrinsic value. 
+                        
+                        I will be using the 6 financial ratios from 2018 to ‘define’ the characteristics of a stock ( 
+                        Gross profit margin, Net Income Margin, Return on Equity, Return on Assets, Liabilities to 
+                        Equity, Retained earnings to Equity). These along with the filter we apply to our data will 
+                        have a large impact on the output of our model. 
+                        
+                        _**Principle component analysis**_ is a dimensionality reduction technique which essentially 
+                        summarises our data whilst maintaining the main gist of the story that the data is telling 
+                        us. It is also easier to visualise the clusters as we can’t have 6 dimensional graphs and 
+                        allows for a faster execution time when it comes to training our model. 
+                        
+                        _**Explained variance ratio**_ - We can also evaluate the number of compoenents we reduce our 
+                        model by, using the explained variance ratio. In essence the higher the value (up to 1 
+                        representing 100% of data is accounted for) the more representative our PCA model will be. 
+
+                        _** Silhouette Coefficient**_ - We can also evaluate the number of clusters we use to find the 
+                        most optimum using something known as the silhouette coefficient. It is essentially a metric 
+                        used to measure the separation between data points and the decision boundary of a cluster 
+                        measured between 0 and 1. If datapoints are closer to a decision boundary it will have a 
+                        lower score. This suggests that the model isn’t very good since there is no clear separation 
+                        of clusters and the model might classify data points along a decision boundary wrong. 
+                        Therefore, we can test different number of clusters to see which cluster gives the most 
+                        optimum score for the silhouette coefficient. 
+
+                    '''))]
+                ),
+
+            ],
+                style={'textAlign': 'center', },
+                className='modal-content',
+            ),
+        ], id='modal6', className='modal', style={"display": "none"}),
         ])  # hidden divs
     ])
 
@@ -728,7 +880,15 @@ def register_dashapps(app):
                     ], className='block5'),
 
                 ], className='block1'),
+                
                 html.Div([
+                    html.Img(
+                        id='instructions-button5',
+                        src=dashapp1.get_asset_url('question-circle-solid.svg'),
+                        # html.Img(src= dashapp1.get_asset_url('question-circle-solid.svg'))
+                        n_clicks=0,
+                        className='info-placement',
+                    ),
                     html.Div([
                         dcc.Graph(id='close-graph', config={'displayModeBar': False}, style={
                             "height": "40vh",
@@ -877,7 +1037,16 @@ def register_dashapps(app):
                 ], className='mac1'),
                 html.Div([
 
-                    html.Div([html.H6('Regression Analysis')], className='reg-analysis'),
+                    html.Div([html.H6('Regression Analysis'),
+                             html.Img(
+                              id='instructions-button6',
+                              src= dashapp1.get_asset_url('question-circle-solid.svg'),
+                              # html.Img(src= dashapp1.get_asset_url('question-circle-solid.svg'))
+                              n_clicks=0,
+                              className='info-placement2',
+                          ),
+                             
+                             ], className='reg-analysis'),
                     html.Div([
                         dcc.Graph(id='regression-graph', config={'displayModeBar': False}, style={
 
@@ -3304,7 +3473,28 @@ def register_dashapps(app):
             # return {"display": "none"}
             return 0
 
+    @dashapp1.callback(Output('instructions-button5', 'n_clicks'),
+                       [Input('modal-close-button5', 'n_clicks')])
+    def close_modal(n):
+        if n is not None:
+            # return {"display": "none"}
+            return 0
 
+
+    @dashapp1.callback(Output('modal6', 'style'),
+                       [Input('instructions-button6', 'n_clicks')])
+    def show_modal(n):
+        if n > 0:
+            return {"display": "block"}
+        return {"display": "none"}
+
+
+    @dashapp1.callback(Output('instructions-button6', 'n_clicks'),
+                       [Input('modal-close-button6', 'n_clicks')])
+    def close_modal(n):
+        if n is not None:
+            # return {"display": "none"}
+            return 0
 
     _protect_dashviews(dashapp1)
     
