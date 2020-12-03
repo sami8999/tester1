@@ -3473,6 +3473,14 @@ def register_dashapps(app):
             # return {"display": "none"}
             return 0
 
+    @dashapp1.callback(Output('modal5', 'style'),
+                   [Input('instructions-button5', 'n_clicks')])
+    def show_modal(n):
+        if n > 0:
+            return {"display": "block"}
+        return {"display": "none"}
+
+
     @dashapp1.callback(Output('instructions-button5', 'n_clicks'),
                        [Input('modal-close-button5', 'n_clicks')])
     def close_modal(n):
