@@ -22,6 +22,15 @@
     margin-right: 90%;
 }
 
+.info-placement3{
+
+    position: absolute !important;
+    cursor: pointer !important;
+    height: 3.3rem !important;
+    width: 3.3rem !important;
+    margin-right: 41% !important;
+    margin-top: 22px;
+}
 
 .js-plotly-plot .plotly .modebar{
 
