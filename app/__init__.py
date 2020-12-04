@@ -339,7 +339,7 @@ def register_dashapps(app):
                 {'label': i, 'value': i} for i in df_names
             ], value=ticker, multi=False, placeholder='Enter a ticker'),
         ], className='drops'),
-        dcc.Tabs(id="tabs", value='Tab2', className='custom-tabs-container', children=[
+        dcc.Tabs(id="tabs", value='Tab4', className='custom-tabs-container', children=[
             dcc.Tab(label='Financial Statements', id='tab2', value='Tab2', selected_className='custom-tab--selected',
                     children=[]),
             dcc.Tab(label='Intrinsic value estimations', id='tab3', value='Tab3', selected_className='custom-tab--selected',
