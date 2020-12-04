@@ -66,6 +66,7 @@
     float: left;
     border: 1px solid #d6d6d6;
     position: relative;
+    overflow: hidden;
 }
 
 .mac2 {
@@ -619,32 +620,8 @@
     position:absolute;
     display: flex;
     width: 100%;
-    margin-left: 48%;
-    margin-top: 90px;
-}
-
-.coefficient2 {
-    position:absolute;
-    display: flex;
-    width: 100%;
-    margin-left: 48%;
-    margin-top: 130px;
-}
-
-.coefficient3 {
-    position:absolute;
-    display: flex;
-    width: 100%;
-    margin-left: 48%;
-    margin-top: 170px;
-}
-
-.coefficient4 {
-    position:absolute;
-    display: flex;
-    width: 100%;
-    margin-left: 48%;
-    margin-top: 210px;
+    margin-left: 40%;
+    margin-top: 70px;
 }
 
 
