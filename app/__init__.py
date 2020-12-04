@@ -1138,7 +1138,7 @@ def register_dashapps(app):
                         dcc.Graph(id='regression-graph', config={'displayModeBar': False}, style={
 
                             "height": "30vh",
-                            "width": "30vw",
+                            "width": "28vw",
                             "display": "inline-block",
                             "margin-top": "70px"
                         }),
