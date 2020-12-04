@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf import RecaptchaField
 from wtforms import BooleanField
 from wtforms import PasswordField
 from wtforms import StringField
@@ -21,15 +22,8 @@ class LoginForm(FlaskForm):
 #         if user is None or not user.check_password(self,password.data):
 #             raise ValidationError('Username or password incorrect.')
     
-#     def validate_password(self, password):
-#     user = User.query.filter_by(username=username.data).first()
-#     if not user.check_password(password.data):
-#         raise ValidationError("Incorrect Password")
             
-            
-             
-                        
-
+         
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=4, max=15) ])
@@ -37,7 +31,9 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8, max=80) ])
     password2 = PasswordField(
         'Repeat Password', validators=[DataRequired(), EqualTo('password')]) 
+    recaptcha = RecaptchaField()
     submit = SubmitField('Register')
+    
     
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
