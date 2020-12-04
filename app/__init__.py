@@ -1123,15 +1123,17 @@ def register_dashapps(app):
 
                 ], className='mac1'),
                 html.Div([
-
-                    html.Div([html.H6('Regression Analysis'),
-                             html.Img(
+                    
+                    html.Img(
                               id='instructions-button6',
                               src= dashapp1.get_asset_url('question-circle-solid.svg'),
                               # html.Img(src= dashapp1.get_asset_url('question-circle-solid.svg'))
                               n_clicks=0,
                               className='info-placement2',
                           ),
+                    
+                    html.Div([html.H6('Regression Analysis'),
+                            
                              
                              ], className='reg-analysis'),
                     html.Div([
