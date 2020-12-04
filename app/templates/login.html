@@ -41,7 +41,7 @@ Log in
     {{ wtf.form_field(form.username) }}
     {{ wtf.form_field(form.password) }}
     {% if error %}
-        <div class="error">{{ error }}</div>
+        <span style="color: red;">{{ error }}</span>
     {% endif %}
     <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
   </form>
