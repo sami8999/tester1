@@ -8,7 +8,6 @@ from flask_login import login_required
 from flask_login import login_user
 from flask_login import logout_user
 from werkzeug.urls import url_parse
-#from werkzeug.security import generate_password_hash, check_password_hash
 from flask_bootstrap import Bootstrap
 
 from app.extensions import db
@@ -18,6 +17,7 @@ from app.models import User
 
 server_bp = Blueprint('main', __name__)
 
+#for different heroku apps change the redirect for web app, also template with navbar and app.json. 
 
 @server_bp.route('/')
 def index():
@@ -28,12 +28,17 @@ def index():
 @server_bp.route('/login/', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        #return redirect(url_for('main.index'))
         return redirect('https://samis-project.herokuapp.com/dashboard/')
 
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
+        
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect('https://samis-project.herokuapp.com/login/')
+        
+        
         login_user(user, remember=form.remember_me.data)
         return redirect('https://samis-project.herokuapp.com/dashboard/')
       
