@@ -34,10 +34,8 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
+        login_user(user, remember=form.remember_me.data)
         return redirect('https://samis-project.herokuapp.com/dashboard/')
-#         if user is None or not user.check_password(form.password.data):
-#             error = 'Invalid username or password'
-#             return render_template('login.html', form=form, error=error)
       
     return render_template('login.html', title='Sign In', form=form)
 
