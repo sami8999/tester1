@@ -34,8 +34,8 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user is None or not user.check_password(form.password.data):
-            raise ValidationError('Username or password incorrect.')
+#         if user is None or not user.check_password(form.password.data):
+#             raise ValidationError('Username or password incorrect.')
 
 
 #         if user is None or not user.check_password(form.password.data):
