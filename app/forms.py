@@ -16,10 +16,10 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
     remember_me = BooleanField('Remember Me')
-    def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()  
-        if user is None or not user.check_password(password=password.data):
-            raise ValidationError('Username or password incorrect.')
+#     def validate_username(self, username):
+#         user = User.query.filter_by(username=username.data).first()  
+#         if user is None or not user.check_password(password=password.data):
+#             raise ValidationError('Username or password incorrect.')
     
 #     def validate_password(self, password):
 #     user = User.query.filter_by(username=username.data).first()
