@@ -1127,19 +1127,8 @@ def register_dashapps(app):
 
                 ], className='mac1'),
                 html.Div([
-                    
-                    html.Img(
-                              id='instructions-button6',
-                              src= dashapp1.get_asset_url('question-circle-solid.svg'),
-                              # html.Img(src= dashapp1.get_asset_url('question-circle-solid.svg'))
-                              n_clicks=0,
-                              className='info-placement2',
-                          ),
-                    
-                    html.Div([html.H6('Regression Analysis'),
-                            
-                             
-                             ], className='reg-analysis'),
+            
+                    html.Div([html.H6('Regression Analysis')], className='reg-analysis'),
                     html.Div([
                         dcc.Graph(id='regression-graph', config={'displayModeBar': False}, style={
 
@@ -1149,6 +1138,13 @@ def register_dashapps(app):
                             "margin-top": "70px"
                         }),
                     ], className='regression'),
+                    html.Img(
+                              id='instructions-button6',
+                              src= dashapp1.get_asset_url('question-circle-solid.svg'),
+                              # html.Img(src= dashapp1.get_asset_url('question-circle-solid.svg'))
+                              n_clicks=0,
+                              className='info-placement2',
+                          ),
                     html.Div([html.Div([html.Div(id='r-coefficient')
 
                                         ], className='coeff-value'),
