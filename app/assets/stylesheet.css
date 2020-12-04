@@ -69,7 +69,6 @@
 }
 
 .mac2 {
-    display: flex;
     height: 41.763vh;
     background-color: white;
     width: 49.85%;
@@ -77,6 +76,7 @@
     border: 1px solid #d6d6d6;
     border-left: transparent;
     position: relative;
+    overflow: hidden;
 }
 
 .mac3 {
@@ -218,21 +218,28 @@
     font-size: 1.2rem;
 }
 
+.regression {
+
+    float: left;
+    position: absolute;
+}
+
 .line-equation{
 
-    margin-top: 290px;
-    margin-left: 8%;
     position: absolute;
     font-size: 1.2rem;
+    bottom: 0;
+
 }
 
 .year-machine{
 
-    margin-top: 100px;
-    margin-left: 94.5%;
     position: absolute;
     font-size: 1.2rem;
+    margin-left: 90%;
+    margin-top: 85px;
 }
+
 
 
 .dcf-mach{
