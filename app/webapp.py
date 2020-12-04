@@ -9,6 +9,7 @@ from flask_login import login_user
 from flask_login import logout_user
 from werkzeug.urls import url_parse
 from flask_bootstrap import Bootstrap
+from wtforms.validators import ValidationError
 
 from app.extensions import db
 from app.forms import LoginForm
@@ -33,7 +34,10 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        
+        if user is None or not user.check_password(form.password.data):
+            raise ValidationError('Username or password incorrect.')
+
+
 #         if user is None or not user.check_password(form.password.data):
 #             flash('Invalid username or password')
 #             return redirect('https://samis-project.herokuapp.com/login/')
