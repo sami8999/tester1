@@ -1112,8 +1112,6 @@ def register_dashapps(app):
                     html.Div([
                         dcc.Graph(id='heatmap', config={'displayModeBar': False}, style={
 
-                            "height": "30vh",
-                            "width": "60vw",
                             "display": "inline-block",
                             "margin-left": "-36%",
                         }),
@@ -3448,7 +3446,7 @@ def register_dashapps(app):
 
             fig31 = px.imshow(df_value.corr(), template="seaborn", x=['Close', 'Income', 'Cash', 'Equity', 'Book'],
                               y=['Close', 'Income', 'Cash', 'Equity', 'Book'])
-            fig31.update_layout(margin={'t': 0, 'b': 0, 'l': 0, 'r': 0})
+            fig31.update_layout(margin={'t': 0, 'b': 0, 'l': 0, 'r': 0}, width =800, height = 200)
 
             return fig31
         except (TypeError, KeyError):
