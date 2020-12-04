@@ -581,7 +581,6 @@
 }
 
 .heatmap {
-    position:absolute; top: 60px ;
     display: flex;
     width: 100%;
     align-items: center;
