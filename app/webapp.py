@@ -36,13 +36,8 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            raise ValidationError('Username or password incorrect.')
-
-
-#         if user is None or not user.check_password(form.password.data):
-#             flash('Invalid username or password')
-#             return redirect('https://samis-project.herokuapp.com/login/')
-        
+            flash('Invalid username or password')
+            return redirect('https://samis-project.herokuapp.com/login/')
         
         login_user(user, remember=form.remember_me.data)
         return redirect('https://samis-project.herokuapp.com/dashboard/')
