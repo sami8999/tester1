@@ -3446,7 +3446,7 @@ def register_dashapps(app):
 
             fig31 = px.imshow(df_value.corr(), template="seaborn", x=['Close', 'Income', 'Cash', 'Equity', 'Book'],
                               y=['Close', 'Income', 'Cash', 'Equity', 'Book'])
-            fig31.update_layout(margin={'t': 0, 'b': 0, 'l': 0, 'r': 0}, width =800, height = 200)
+            fig31.update_layout(margin={'t': 0, 'b': 0, 'l': 0, 'r': 0}, width =700, height = 200)
 
             return fig31
         except (TypeError, KeyError):
