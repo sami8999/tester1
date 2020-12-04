@@ -322,13 +322,17 @@ def register_dashapps(app):
     dashapp1.config['suppress_callback_exceptions'] = True
     dashapp1.layout = html.Div([
         html.Div([
-            html.H2('Fundamental Analysis'),
-            html.Img(
-                id='instructions-button7',
-                src=dashapp1.get_asset_url('question-circle-solid.svg'),
-                # html.Img(src= dashapp1.get_asset_url('question-circle-solid.svg'))
-                n_clicks=0,
-                className='info-placement3'),
+            html.Div([
+                html.H2('Fundamental Analysis'),
+                html.Img(
+                    id='instructions-button7',
+                    src=dashapp1.get_asset_url('question-circle-solid.svg'),
+                    # html.Img(src= dashapp1.get_asset_url('question-circle-solid.svg'))
+                    n_clicks=0,
+                    className='info-placement3'),
+            ], className='banner-box'),
+            
+            
             html.A(html.Button(id="logout-button", n_clicks=0, children="Log Out", className="logout2"),
                    href='https://samis-project.herokuapp.com/logout/'),
             html.Img(src= dashapp1.get_asset_url('stock-icon.png')),
