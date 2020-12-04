@@ -23,12 +23,9 @@
 
 .info-placement3{
 
-    position: absolute !important;
     cursor: pointer !important;
     height: 3.3rem !important;
     width: 3.3rem !important;
-    margin-right: 41% !important;
-    margin-top: 22px;
 }
 
 .js-plotly-plot .plotly .modebar{
@@ -746,12 +743,20 @@
     margin-bottom:40vh;
     margin-right: 100vh;
 }
-.banner h2{
+
+.banner-box{
     color: white;
     padding-top: 0;
     margin-left: 40%;
     display: inline-block;
+    position: absolute;
 }
+
+.banner-box Img{
+    margin-top: -60px;
+    margin-right: 50px
+}
+
 
 .banner Img{
     position: relative;
