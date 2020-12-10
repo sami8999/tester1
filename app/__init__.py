@@ -3457,7 +3457,7 @@ def register_dashapps(app):
             fig31.update_layout(margin={'t': 0, 'b': 0, 'l': 0, 'r': 0}, width=700, height=200)
 
             return fig31
-        except KeyError:
+        except (TypeError, KeyError):
             pass
 
 
