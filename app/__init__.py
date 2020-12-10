@@ -2022,7 +2022,7 @@ def register_dashapps(app):
             sum1 = close_graph['P/E'].sum()
             average = (sum1 / count_row).round(2)
             return average
-        except (TypeError, AttributeError, KeyError):
+        except (TypeError, AttributeError, KeyError, AssertionError):
             return 0
 
 
@@ -2034,7 +2034,7 @@ def register_dashapps(app):
             df1 = df_cashflow.loc[down_value]
             cash_free = (df1['Cash from Operating'][-1] + df1['Capital Expenditure'][-1]).round(2)
             return cash_free
-        except KeyError:
+        except (KeyError, IndexError):
             return 0
 
 
@@ -2046,7 +2046,7 @@ def register_dashapps(app):
             df1 = df_balance.loc[down_value]
             equity = df1['Total Equity'][-1]
             return equity
-        except KeyError:
+        except (KeyError, IndexError):
             return 0
 
 
@@ -2054,9 +2054,12 @@ def register_dashapps(app):
         Output('daq-netinc', 'value'),
         [Input("drop-down", "value")])
     def update_netequity(down_value):
-        df1 = df_income.loc[down_value]
-        income = df1['Net Income'][-1]
-        return income
+        try:
+            df1 = df_income.loc[down_value]
+            income = df1['Net Income'][-1]
+            return income
+        except IndexError:
+            return 0
 
 
     @dashapp1.callback(
@@ -2069,7 +2072,7 @@ def register_dashapps(app):
             total_dividend = df1['Dividend per share'].sum()
             average_dividend = (total_dividend / years_data).round(2)
             return average_dividend
-        except KeyError:
+        except (KeyError, IndexError):
             return 0
 
 
@@ -2086,7 +2089,7 @@ def register_dashapps(app):
             else:
                 book_growth_percent = round((((book_change ** (1 / years_data)) - 1) * 100), 2)
                 return book_growth_percent
-        except (TypeError, KeyError):
+        except (TypeError, KeyError, IndexError):
             return 0
 
 
@@ -2103,7 +2106,7 @@ def register_dashapps(app):
             else:
                 equity_percent = round((((equity_change ** (1 / years_data)) - 1) * 100), 2)
                 return equity_percent
-        except KeyError:
+        except (KeyError, IndexError):
             return 0
 
 
@@ -2117,7 +2120,7 @@ def register_dashapps(app):
             sum1 = (df3['Return on EquityT'] * 100).sum()
             average_equity = (sum1 / years_data).round(2)
             return average_equity
-        except KeyError:
+        except (KeyError, IndexError):
             return 0
 
 
@@ -2125,15 +2128,18 @@ def register_dashapps(app):
         Output('daq-incgrow', 'value'),
         [Input("drop-down", "value")])
     def update_cash(down_value):
-        df1 = df_income.loc[down_value]
-        years_data = df1['Year'][-1] - df1['Year'][0]
-        df1['EPS'] = df1['Net Income'] / df1['Shares']
-        eps_change = df1['EPS'][-1] / df1['EPS'][0]
-        if eps_change < 0:
+        try:
+            df1 = df_income.loc[down_value]
+            years_data = df1['Year'][-1] - df1['Year'][0]
+            df1['EPS'] = df1['Net Income'] / df1['Shares']
+            eps_change = df1['EPS'][-1] / df1['EPS'][0]
+            if eps_change < 0:
+                return 0
+            else:
+                eps_growth_percent = round((((eps_change ** (1 / years_data)) - 1) * 100), 2)
+                return eps_growth_percent
+        except IndexError:
             return 0
-        else:
-            eps_growth_percent = round((((eps_change ** (1 / years_data)) - 1) * 100), 2)
-            return eps_growth_percent
 
 
     @dashapp1.callback(
@@ -2212,7 +2218,7 @@ def register_dashapps(app):
                 'Equity Correlation: {}'.format(equity_corr), html.Br(),
                 'Book Value Correlation: {}'.format(book_corr)
             ])
-        except (TypeError, KeyError):
+        except (TypeError, KeyError, ValueError):
             pass
 
 
@@ -2377,7 +2383,7 @@ def register_dashapps(app):
             model1.fit(X, regressiondf['Cash'])
             variance = (model1.score(X, regressiondf['Cash'])).round(2)
             return 'R Coefficient Value: {}'.format(variance)
-        except (TypeError, KeyError):
+        except (TypeError, KeyError, ValueError):
             pass
 
 
@@ -2402,7 +2408,7 @@ def register_dashapps(app):
                 return 'y = {}'.format(slope) + ' x {}'.format(yinter)
             if yinter > 0:
                 return 'y = {}'.format(slope) + ' x + {}'.format(yinter)
-        except (TypeError, KeyError):
+        except (TypeError, KeyError, ValueError):
             pass
 
 
@@ -2481,7 +2487,7 @@ def register_dashapps(app):
                 'P Estimate : $ {}'.format(coefficient_value1), html.Br(),
                 'R+P Estimate: $ {}'.format(coefficient_value2)
             ])
-        except (ZeroDivisionError, TypeError, KeyError):
+        except (ZeroDivisionError, TypeError, KeyError, ValueError):
             pass
 
 
@@ -2502,7 +2508,7 @@ def register_dashapps(app):
             df1 = df1.transpose()
             columns = [{"name": i, "id": i} for i in df1.columns]
             return columns
-        except (TypeError, KeyError):
+        except (TypeError, KeyError, IndexError):
             pass
 
 
@@ -2522,7 +2528,7 @@ def register_dashapps(app):
             df1 = df1.transpose()
             data = df1.to_dict("records")
             return data
-        except (TypeError, KeyError):
+        except (TypeError, KeyError, IndexError):
             pass
 
 
@@ -3448,10 +3454,10 @@ def register_dashapps(app):
 
             fig31 = px.imshow(df_value.corr(), template="seaborn", x=['Close', 'Income', 'Cash', 'Equity', 'Book'],
                               y=['Close', 'Income', 'Cash', 'Equity', 'Book'])
-            fig31.update_layout(margin={'t': 0, 'b': 0, 'l': 0, 'r': 0}, width =700, height = 200)
+            fig31.update_layout(margin={'t': 0, 'b': 0, 'l': 0, 'r': 0}, width=700, height=200)
 
             return fig31
-        except (TypeError, KeyError):
+        except KeyError:
             pass
 
 
@@ -3495,7 +3501,7 @@ def register_dashapps(app):
                                             bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)",
                                             borderwidth=0))
             return fig32
-        except (TypeError, KeyError):
+        except (TypeError, KeyError, ValueError):
             pass
 
 
@@ -3562,8 +3568,9 @@ def register_dashapps(app):
             # return {"display": "none"}
             return 0
 
+
     @dashapp1.callback(Output('modal5', 'style'),
-                   [Input('instructions-button5', 'n_clicks')])
+                       [Input('instructions-button5', 'n_clicks')])
     def show_modal(n):
         if n > 0:
             return {"display": "block"}
@@ -3592,9 +3599,10 @@ def register_dashapps(app):
         if n is not None:
             # return {"display": "none"}
             return 0
-        
+
+
     @dashapp1.callback(Output('modal7', 'style'),
-                   [Input('instructions-button7', 'n_clicks')])
+                       [Input('instructions-button7', 'n_clicks')])
     def show_modal(n):
         if n > 0:
             return {"display": "block"}
