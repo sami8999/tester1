@@ -1839,7 +1839,7 @@ def register_dashapps(app):
 
             fig33.update_layout(
                 title={
-                    'text': "Principle Component Analysis ",
+                    'text': "Principal Component Analysis ",
                     'y': 0.98,
                     'x': 0.5,
                     'xanchor': 'center',
