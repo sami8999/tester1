@@ -366,7 +366,8 @@ def register_dashapps(app):
                     html.Div(
                         children=[
                             dcc.Markdown(dedent('''
-                            The Income Statement has been simplified by dividing by 1,000,000.
+                            Learn more about the application with an in depth video [here](https://www.youtube.com/watch?v=-Qdi57xzGNQ)
+                            All financial statements have been simplified by dividing by 1,000,000.
 
                             _**SGA**_ - Companies that do not have competitive advantage suffer from intense competition 
                             showing wild variation in SGA (selling, general and administrative) costs as a percentage of 
@@ -1112,7 +1113,7 @@ def register_dashapps(app):
             return html.Div([
                 html.Div([
 
-                    html.Div([html.H6('Pearsons Correlation')], className='pearson'),
+                    html.Div([html.H6("Pearson's Correlation")], className='pearson'),
                     html.Div([
                         dcc.Graph(id='heatmap', config={'displayModeBar': False}, style={
 
