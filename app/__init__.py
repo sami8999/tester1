@@ -366,7 +366,6 @@ def register_dashapps(app):
                     html.Div(
                         children=[
                             dcc.Markdown(dedent('''
-                            Learn more about the application with an in depth video [here](https://www.youtube.com/watch?v=-Qdi57xzGNQ)
                             All financial statements have been simplified by dividing by 1,000,000.
 
                             _**SGA**_ - Companies that do not have competitive advantage suffer from intense competition 
@@ -809,6 +808,7 @@ def register_dashapps(app):
                 html.Div(
                     children=[
                         dcc.Markdown(dedent('''
+                        Learn more about the application with an in depth video [here](https://www.youtube.com/watch?v=-Qdi57xzGNQ)
                         
                         I have built this application to incorporate the investing techniques listed below such as 
                         implementing a way for users to access the financial reports of lots of different stocks (through 
