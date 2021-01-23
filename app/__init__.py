@@ -132,7 +132,7 @@ def register_dashapps(app):
                                INVENTORIES: 'Inventory & Stock'}, inplace=True)
     df_balance['Book Value'] = round((df_balance['Total Equity'] / df_income['Shares']), 2)
     df_balance['EPS'] = round((df_income['Net Income'] / df_income['Shares']), 2)
-    df_balance = df_balance[~df_balance.index.duplicated()]
+  
     df3_original = df_balance.loc[ticker]
 
     # balance signals
