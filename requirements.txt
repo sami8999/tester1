@@ -64,7 +64,7 @@ webencodings==0.5.1
 Werkzeug==0.16.1
 wrapt==1.11.2
 WTForms==2.2.1
-yfinance~=0.1.54
+yfinance==0.1.63
 scipy~=1.5.4
 scikit-learn~=0.23.2
 statsmodels~=0.12.1
