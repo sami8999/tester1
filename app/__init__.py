@@ -43,7 +43,7 @@ def create_app():
 def register_dashapps(app):
     # income statement
     sf.set_data_dir('~/simfin_data/')
-    api_key = "ZxGEGRnaTpxMF0pbGQ3JLThgqY2HBL17"
+    sf.set_api_key(api_key='ahPVOzL25BTsIYdCNmowLtrZxmf1KeI6')
     df_income = sf.load(dataset='income', variant='annual', market='us', refresh_days=3, index=[TICKER])
     df_publish = df_income.copy()
     df_pe = pd.DataFrame()
