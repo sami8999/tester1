@@ -304,6 +304,8 @@ def register_dashapps(app):
     clustersignals = clustersignals.loc[2018]
     clustersignals = clustersignals.set_index(clustersignals['Ticker'])
     clustersignals = clustersignals.drop(['Ticker'], axis=1)
+    # removes duplicated values (if dataset is corrupted) 
+    clustersignals = clustersignals.loc[~clustersignals.index.duplicated(), :]
 
 
    
