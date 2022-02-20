@@ -66,6 +66,9 @@ def register_dashapps(app):
                  OP_INCOME: 'Operating Income', NON_OP_INCOME: 'Non Operating Income',
                  INTEREST_EXP_NET: 'Interest Expense', PRETAX_INCOME_LOSS: 'Pretax Income',
                  INCOME_TAX: 'Income Tax'}, inplace=True)
+    
+    df_income = df_income.drop('RBC')
+    
     # restated date
     df_names = df_income.index.copy()
     df_names = df_names.drop_duplicates()
