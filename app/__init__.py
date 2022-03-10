@@ -67,7 +67,7 @@ def register_dashapps(app):
                  INTEREST_EXP_NET: 'Interest Expense', PRETAX_INCOME_LOSS: 'Pretax Income',
                  INCOME_TAX: 'Income Tax'}, inplace=True)
     
-    df_income = df_income.drop('RBC')
+    #df_income = df_income.drop('RBC')
     
     # restated date
     df_names = df_income.index.copy()
